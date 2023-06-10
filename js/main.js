@@ -49,14 +49,20 @@ const complObj = {
 
 };
 
-function displayRandomCompliment() {
+let firstClick = true; // Змінна, яка відстежує перший клік
 
-    const keys = Object.keys(complObj);
-    const randomKey = keys[Math.floor(Math.random() * keys.length)];
-
-    const randomCompliment = complObj[randomKey];
-
-    document.getElementById("output").innerHTML = randomCompliment;
+  function changeText() {
+    if (firstClick) {
+      document.getElementById("output").innerHTML = getRandomCompliment();
+      document.getElementById("btn").innerHTML = "Ще один комплімент від мене";
+      firstClick = false;
+    } else {
+      document.getElementById("output").innerHTML = getRandomCompliment();
+    }
   }
 
-  document.getElementById("btn").addEventListener("click", displayRandomCompliment);
+  function getRandomCompliment() {
+    const keys = Object.keys(complObj);
+    const randomKey = keys[Math.floor(Math.random() * keys.length)];
+    return complObj[randomKey];
+  }
